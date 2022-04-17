@@ -18,12 +18,12 @@ class PlaceDetailSerializer(serializers.ModelSerializer):
   
   class Meta:
     model = models.Place
-    fields = ('id', 'name','description','image', 'font', 'color', 'number_of_tables', 'categories')
+    fields = ('id', 'name','Org','recent','description','image', 'font', 'color', 'number_of_tables', 'categories')
 
 class PlaceSerializer(serializers.ModelSerializer):
   class Meta:
     model = models.Place
-    fields = ('id', 'name', 'image','description')
+    fields = ('id', 'name', 'image','description','Org','recent')
 
 class OrderSerializer(serializers.ModelSerializer):
   class Meta:

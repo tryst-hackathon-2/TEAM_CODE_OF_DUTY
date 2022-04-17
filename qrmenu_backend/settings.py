@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'qrmenu_backend.urls'
@@ -140,21 +142,28 @@ REST_FRAMEWORK = {
 
 STRIPE_API_SECRET_KEY = "YOUR_STRIPE_API_SECRET_KEY"
 
-try:
-    import django_heroku
-    django_heroku.settings(locals())
-except:
-    pass
+# try:
+#     import django_heroku
+#     django_heroku.settings(locals())
+# except:
+#     pass
     
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
 STATIC_URL = '/static/'
+
+CORS_ORIGIN_WHITELIST=[
+    "https://guarded-shore-96382.herokuapp.com",
+]
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+import dj_database_url 
+prod_db=dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
 

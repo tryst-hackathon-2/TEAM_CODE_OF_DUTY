@@ -9,6 +9,9 @@ class Place(models.Model):
 
   #new description of company
   description = models.TextField(blank=True)
+  Org = models.TextField(blank=True)
+  recent= models.TextField(blank=True)
+
 
   image = models.CharField(max_length=255)
   number_of_tables = models.IntegerField(default=1)
